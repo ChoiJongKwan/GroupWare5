@@ -20,7 +20,7 @@
 
 6. 원격 저장소에 업로드(push)
 
-	$git remote add origin https://github.com/minddi00/hta-team7.git
+	$git remote add origin https://github.com/ChoiJongKwan/GroupWare5.git
 
 
 	$git push -u origin main
