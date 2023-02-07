@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+C:\Contents\HTA\00.project\01.semi\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2930086118.index
+390868381.index
+2902536698.index
+4283093012.index
+3201563166.index
+1200683862.index
