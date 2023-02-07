@@ -72,6 +72,9 @@ public class Employee {
 
     @OneToMany(mappedBy = "employeeNo")
     private List<Approval> approval = new ArrayList<Approval>();
+
+    @OneToMany(mappedBy = "employeeNo")
+	private List<Scheduler> scheduler = new ArrayList<Scheduler>();
 	
     @Override
     public String toString() {
