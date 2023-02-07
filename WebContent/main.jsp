@@ -7,11 +7,14 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+	
 	</head>
 <body class="is-preload">
-
+<div class="header1" style="box-sizing: border-box;" >
+  <h1>header</h1>
+</div>
 		<!-- Header -->
-			<div id="header">
+			<div id="header2">
 
 				<div class="top">
 
