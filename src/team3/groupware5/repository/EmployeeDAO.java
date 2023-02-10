@@ -13,7 +13,8 @@ import team3.groupware5.vo.Employee;
 @Repository
 public class EmployeeDAO {
 
-	public boolean FindEmployee(String email, String password) throws SQLException {
+	
+	public boolean FindLogin(String email, String password) throws SQLException {
 
 		EntityManager em = DBUtil.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
@@ -22,7 +23,7 @@ public class EmployeeDAO {
 
 			tx.begin();
 
-		Employee data = (Employee) em.createNamedQuery("Employee.FindEmailByEmp").setParameter("email", email).getSingleResult();
+		Employee data = (Employee) em.createNamedQuery("Employee.findLoginByEmp").setParameter("email", email).setParameter("password", password).getSingleResult();
 			em.persist(data);
 			System.out.println(data);
 
@@ -39,5 +40,25 @@ public class EmployeeDAO {
 		}
 		return false;
 	}
+	
+//	public boolean findEmployee(String email, String password) throws Exception {
+//
+//		EntityManager em = DBUtil.getEntityManager();
+//		boolean r = false;
+//		try {
+//
+//			Object data = em.createNamedQuery("Employee.findLoginByEmp").setParameter("email", email)
+//					.setParameter("password", password).getSingleResult();
+//			System.out.println("---- " + data);
+//
+//			r = true;
+//		} finally {
+//			em.close();
+//		}
+//		
+//		return r;
+//	}
+//	
+	
 
 }
