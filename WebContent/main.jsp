@@ -8,10 +8,20 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 	
-	</head>
+	
+	
+	
+	</head>	
 <body class="is-preload">
-<div class="header1" style="box-sizing: border-box;" >
-  <h1>header</h1>
+<div class="header1"  style="box-sizing: border-box;" >
+
+<span >
+  <a href="${pageContext.request.contextPath}/company/logout">Logout</a>
+  </span>
+ <span class="mypage_span">
+  <a href="">MyPage</a>
+  </span>
+ </div>
 </div>
 		<!-- Header -->
 			<div id="header2">

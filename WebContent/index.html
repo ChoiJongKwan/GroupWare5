@@ -34,16 +34,16 @@ body, html {height: 100%}
         <main>        
 <div class="form-wrapper" align="center">
 	<img src="images/logo.png" style="width:150px; height:150px;"> <br>
-    <form id="loginForm">
+    <form id="loginForm" action="company/login" method="post" >
         <h3><p style="color:#046582;">Welcome !</p></h3>
         <div class="input-wrapper" style="display:block; margin:20px auto;">
-            <input type="text" id="userId" name="userId" placeholder=" ID" required>
+            <input type="text" id="email" name="email" placeholder=" ID" required>
         </div>
         <div class="input-wrapper" style="display:block; margin:20px auto;">
-            <input type="password" id="userPw" name="userPw" placeholder=" Password" required>
+            <input type="password" id="password" name="password" placeholder=" Password" required>
         </div>
         <div style="display:block; margin:20px auto;">
-            <button type="button" id="btnLogin" style="background-color:#aad5e5; color:#FFFFFF; border:0px;">LOGIN</button>
+            <button type="submit" id="btnLogin" style="background-color:#aad5e5; color:#FFFFFF; border:0px;">LOGIN</button>
         </div>
 
         <div class="login_append">
@@ -66,4 +66,45 @@ body, html {height: 100%}
 </div>
 
 </body>
+
+<script>
+
+
+
+$(function() {
+   $("#btnLogin").on("click", function() {
+      $.ajax({
+         url: "/company/login",
+         type: "post",
+         data: $("#loginForm").serialize(),
+         success: function(obj) {
+            console.log(obj);
+            if(obj =="fail") {
+               alert("존재하지 않는 아이디입니다.");
+               $("#email").focus();
+               return;
+            }
+
+            if(obj == "pwFail") {
+               alert("비밀번호가 틀렸습니다. 비밀번호를 확인해주세요");
+               $("#password").focus();
+               return;
+            }
+            
+            location.href="/main.jsp";
+         },
+         error: function(e) {
+            console.log(e);
+         }
+      });
+   });
+});
+
+
+
+
+
+
+
+</script>
 </html>
