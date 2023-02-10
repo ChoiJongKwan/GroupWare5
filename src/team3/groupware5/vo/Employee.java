@@ -103,32 +103,3 @@ public class Employee {
 
 }
 
-
-    @OneToMany(mappedBy = "employeeNo")
-    private List<Approval> approval = new ArrayList<Approval>();
-
-    @OneToMany(mappedBy = "employeeNo")
-	private List<Scheduler> scheduler = new ArrayList<Scheduler>();
-	
-    @Override
-    public String toString() {
-       StringBuilder builder = new StringBuilder();
-       builder.append("사원번호 : ");
-       builder.append(employeeNo);
-       builder.append(", 부서명 : ");
-       builder.append(teamName);
-       builder.append(", 사원명 : ");
-       builder.append(employeeName);
-       builder.append(", 비밀번호 : ");
-       builder.append(password);
-       builder.append(", 이메일 주소 : ");
-       builder.append(email);
-       builder.append(", 역할 : ");
-       builder.append(role);
-       builder.append(", 직급: ");
-       builder.append(positionName);
-       return builder.toString();
-    }
-
-}
-
