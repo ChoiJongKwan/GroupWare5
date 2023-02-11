@@ -23,10 +23,8 @@ import lombok.Setter;
 @RequiredArgsConstructor
 @Getter
 @Setter
-
-
+@NamedQuery(name = "Employee.getEmployee",query = "select e.employeeNo from Employee e where e.email=:email")
 @NamedQuery(name="Employee.findLoginByEmp", query="select e from Employee e where e.email=:email and e.password=:password")
-
 @Entity
 public class Employee {
 	
@@ -79,6 +77,10 @@ public class Employee {
     @OneToMany(mappedBy = "employeeNo")
 	private List<Scheduler> scheduler = new ArrayList<Scheduler>();
     
+    public Employee(int employeeNo) {
+    	this.employeeNo = employeeNo;
+    }
+    
     @Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -87,11 +89,11 @@ public class Employee {
 		builder.append(", 부서명 : ");
 		builder.append(teamName);
 		builder.append(", 사원명 : ");
-		builder.append(employeeName);
-		builder.append(", 이메일 : ");
-		builder.append(email);
-		builder.append(", 비밀번호 : ");
 		builder.append(password);
+		builder.append(", 이메일 주소 : ");
+		builder.append(employeeName);
+		builder.append(", 비밀번호 : ");
+		builder.append(email);
 		builder.append(", 역할 : ");
 		builder.append(role);
 		builder.append(", 직급: ");
@@ -101,4 +103,5 @@ public class Employee {
 	
 
 }
+
 

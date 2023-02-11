@@ -1,4 +1,4 @@
-package team3.groupware5.repositoy;
+package team3.groupware5.repository;
 
 import java.sql.SQLException;
 
@@ -13,7 +13,6 @@ import team3.groupware5.vo.Employee;
 @Repository
 public class EmployeeDAO {
 
-	
 	public boolean FindLogin(String email, String password) throws SQLException {
 
 		EntityManager em = DBUtil.getEntityManager();
@@ -40,25 +39,27 @@ public class EmployeeDAO {
 		}
 		return false;
 	}
+	//세션 저장 값 no로 변환
+	public int getEmployeeEmail(String email) throws SQLException {
+		EntityManager em = DBUtil.getEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		System.out.println(email);
+		
+		int id = 0;
+		try {
+			tx.begin();
+			id = (Integer)em.createNamedQuery("Employee.getEmployee").setParameter("email", email).getSingleResult();
 	
-//	public boolean findEmployee(String email, String password) throws Exception {
-//
-//		EntityManager em = DBUtil.getEntityManager();
-//		boolean r = false;
-//		try {
-//
-//			Object data = em.createNamedQuery("Employee.findLoginByEmp").setParameter("email", email)
-//					.setParameter("password", password).getSingleResult();
-//			System.out.println("---- " + data);
-//
-//			r = true;
-//		} finally {
-//			em.close();
-//		}
-//		
-//		return r;
-//	}
-//	
-	
+			tx.commit();
+			
+		} catch (Exception e) {
+			tx.rollback();
+			e.printStackTrace();
+		} finally {
+			em.close();
+		}
+		return id;
+	}
 
+	
 }

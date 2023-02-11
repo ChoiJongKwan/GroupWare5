@@ -1,7 +1,5 @@
 package team3.groupware5.vo;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,19 +7,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 @Getter
 @Setter
-@ToString
+
+@NamedQuery(name = "Notice.allNotice",
+query = "select n from Notice n order by no desc")
 
 @Entity
 public class Notice {
@@ -43,7 +45,7 @@ public class Notice {
 	
 	@NonNull
 	@Column(length = 50, nullable = false)
-	private String writeDate;
+	private String writedate;
 	
 	@NonNull
 	@Column(length = 50, nullable = false)
@@ -53,6 +55,26 @@ public class Notice {
 	@NonNull
 	@JoinColumn(name="employeeNo")
 	private Employee employeeNo;
+	
+	 @Override
+	    public String toString() {
+	       StringBuilder builder = new StringBuilder();
+	       builder.append("게시판 번호 : ");
+	       builder.append(no);
+	       builder.append(", 제목 : ");
+	       builder.append(title);
+	       builder.append(", 내용 : ");
+	       builder.append(content);
+	       builder.append(", 비밀번호 : ");
+	       builder.append(password);
+	       builder.append(", 작성일 : ");
+	       builder.append(writedate);
+	       builder.append(", 조회수: ");
+	       builder.append(hit);
+	       builder.append(", 사원번호: ");
+	       builder.append(employeeNo.getEmployeeNo());
+	       return builder.toString();
+	    }
 	
 
 }
