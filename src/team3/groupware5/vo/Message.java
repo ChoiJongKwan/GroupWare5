@@ -19,7 +19,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
 
 @Entity
 public class Message {
@@ -40,4 +39,19 @@ public class Message {
 	@NonNull
 	@Column(nullable = false)
 	private String writeDate;
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Massage [no=");
+		builder.append(no);
+		builder.append(", employeeNo=");
+		builder.append(employeeNo.getEmployeeNo());
+		builder.append(", content=");
+		builder.append(content);
+		builder.append(", writeDate=");
+		builder.append(writeDate);
+	   	builder.append("]");
+		return builder.toString();
+   }
 }
