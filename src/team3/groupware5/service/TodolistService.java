@@ -2,9 +2,6 @@ package team3.groupware5.service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,9 +14,28 @@ public class TodolistService {
 	@Autowired
 	public TodolistDAO tdDao;
 	
-	@Transactional
+	private Todolist vo;
+	
+
 	public ArrayList<Todolist> getTodolist() throws SQLException{
 		System.out.println("------------service----------");
-		return tdDao.getTodolistAll();
+		ArrayList<Todolist> all= tdDao.getTodolistAll();
+		return all;
 	}
+
+
+	public boolean insert(Todolist tdl) {
+		
+		return tdDao.insertTodolist(tdl);
+			
+		
+	}
+
+
+	public boolean delete(int num) {
+		
+		return tdDao.deleteTodolist(num);
+	}
+	
+
 }

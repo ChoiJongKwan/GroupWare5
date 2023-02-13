@@ -56,27 +56,7 @@ public class Employee {
     @Column(length = 50, nullable = false)
     private String positionName;
     
-    @OneToMany(mappedBy = "employeeNo")
-	private List<Notice> notice = new ArrayList<Notice>();
- 
-	@OneToMany(mappedBy = "employeeNo")
-	private List<Board> board = new ArrayList<Board>();
-	
-	@OneToMany(mappedBy = "employeeNo")
-	private List<Reply> reply = new ArrayList<Reply>();
-	
-	@OneToMany(mappedBy = "employeeNo")
-	private List<Message> msg = new ArrayList<Message>();
-	
-    @OneToMany(mappedBy = "employeeNo")
-    private List<Todolist> list = new ArrayList<Todolist>();
 
-    @OneToMany(mappedBy = "employeeNo")
-    private List<Approval> approval = new ArrayList<Approval>();
-    
-    @OneToMany(mappedBy = "employeeNo")
-	private List<Scheduler> scheduler = new ArrayList<Scheduler>();
-    
     public Employee(int employeeNo) {
     	this.employeeNo = employeeNo;
     }
@@ -103,5 +83,3 @@ public class Employee {
 	
 
 }
-
-

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<SCRIPT language=javascript>
+
+/*각 입력 input tag 인 입력 form에 엽력 여부 검증하는 java script 코드
+ * 
+ */
+function checkValid() {
+    var f = window.document.writeForm;
+		
+	if ( f.id.value == "") {
+	    alert( "작성자를 입력해 주세요." );
+		return false;
+    }
+	if ( f.email.value == "" ) {
+		alert( "전자메일을 입력해 주세요." );
+		return false;
+	}
+	if ( f.name.value == "" ) {
+		alert( "제목을 입력해 주세요." );
+		return false;
+	}
+	if ( f.password.value == "" ) {
+        alert( "비밀번호를 입력해 주세요" );
+        return false;
+    }
+	if ( f.info.value == "" ) {
+        alert( "글 내용을 입력해 주세요." );
+        return false;
+    }
+    return true;
+}
+function txInput(Obj,String)
+{
+  document.getElementById(Obj).value = String;
+}
+</SCRIPT>
+<body>
+
+
+<form name="writeForm" method="post" action="insert" onSubmit='checkValid()'>
+
+
+<table align="center" cellpadding="5" cellspacing="2" width="600" border="1">
+
+    <tr>
+        <td width="1220" height="20" colspan="2" bgcolor="#336699">
+            <p align="center"><font color="white" size="3"><b>일정 작성</b></font></p>
+        </td>
+    </tr>
+    <tr>
+        <td width="150" height="20" >
+            <p align="right"><b><span style="font-size:9pt;">제목</span></b></p>
+        </td>
+        <td width="450" height="20"><b><span style="font-size:9pt;">
+		<input type=text name="title" size="30"></span></b></td>
+    </tr>
+   
+    <tr>
+        <td width="150" height="20">
+            <p align="right"><b><span style="font-size:9pt;">중요도</span></b></p>
+        </td>
+        <td width="450" height="20" ><b>
+        <input type="radio" id="3" name="imp" value= "3" onclick="txInput('textinput',this.value)">3<br>
+  		<input type="radio" id="2" name="imp" value="2" onclick="txInput('textinput',this.value)">2<br>
+  		<input type="radio" id="1" name="imp" value="1" onclick="txInput('textinput',this.value)">1<br>        
+        <span style="font-size:9pt;">
+		<input type=text id="textinput"name="importance" size="50" readonly></span></b></td>
+    </tr>
+    <tr>
+        <td width="150" height="20">
+            <p align="right"><b><span style="font-size:9pt;">내 용</span></b></p>
+        </td>
+        <td width="450" height="20"><b><span style="font-size:9pt;">
+		<textarea name="content" cols="50" rows="10"></textarea></span></b></td>
+    </tr>
+    <tr>
+        <td width="150" height="20">
+            <p align="right"><b><span style="font-size:9pt;">일정 시간</span></b></p>
+        </td>
+        <td width="450" height="20">
+        	<b><span style="font-size:9pt;">
+        		<input type="number" name="date" size="12" min='0' max='23'>
+        	</span></b>
+        	시
+        	<b><span style="font-size:9pt;">
+        		<input type="number" name="time" size="12" min='0' max='59' >
+        	</span></b>
+        	분
+        </td>
+    </tr>
+    <tr>
+        <td width="450" height="20" colspan="2" align="center"><b><span style="font-size:9pt;"><input type=submit value=일정추가> 
+        <input type=reset value=다시쓰기></span></b></td>
+    </tr>
+</table>
+
+</form>
+
+<hr>
+<div align=right><span style="font-size:9pt;">&lt;<a href="">리스트로 돌아가기</a>&gt;</span></div>
+
+</BODY>
+</HTML>

@@ -1,10 +1,12 @@
 package team3.groupware5.vo;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,13 +14,14 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Getter
 @Setter
+//@NamedQuery(name = "todolist.gettodolist",
+//query = "select t from todolist t where t.employeeNo:=employeeNo")
 
 
 @Entity
@@ -27,22 +30,20 @@ public class Todolist {
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private int num;//pk주기위해서 
    
-   @ManyToOne
-   @NonNull
-   @JoinColumn(name="employeeNo")
-   private Employee employeeNo;
    @NonNull
    private String title;//제목
    @NonNull
    private String content;//내용
-   
-   private int importance;//중요도
    @NonNull
-   private String checked;//체크여부
+   private int importance;//중요도
    @NonNull
    private String date;//날짜
    @NonNull
    private String time;//시간
+   @ManyToOne
+   @NonNull
+   @JoinColumn(name="employeeNo")
+   private Employee employeeNo;
 @Override
 public String toString() {
 	StringBuilder builder = new StringBuilder();
@@ -56,8 +57,6 @@ public String toString() {
 	builder.append(content);
 	builder.append(", importance=");
 	builder.append(importance);
-	builder.append(", checked=");
-	builder.append(checked);
 	builder.append(", date=");
 	builder.append(date);
 	builder.append(", time=");
