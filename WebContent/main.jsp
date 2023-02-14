@@ -22,7 +22,6 @@
   <a href="">MyPage</a>
   </span>
  </div>
-</div>
 		<!-- Header -->
 			<div id="header2">
 
@@ -42,6 +41,8 @@
 								<li><a href="todolist/allview" id="portfolio-link"><span class="icon solid fa-th">todolist</span></a></li>
 								<li><a href="#about" id="about-link"><span class="icon solid fa-user">About Me</span></a></li>
 								<li><a href="#contact" id="contact-link"><span class="icon solid fa-envelope">Contact</span></a></li>
+								<li><a href="message/list" id="portfolio-link"><span class="icon solid fa-envelope">메시지</span></a></li>
+								
 							</ul>
 						</nav>
 

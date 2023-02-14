@@ -1,53 +1,133 @@
 package team3.groupware5.repository;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Repository;
 
+import team3.groupware5.util.DBUtil;
+//import team3.groupware5.vo.Employee;
 import team3.groupware5.vo.Message;
 
 
 @Repository
 public class MessageDAO {
 	
-	@Autowired
-	private SqlSession sqlSession;
-	
-	
-	public Message getDetailMessage(Message messageVo ) {
+
+	@Transactional
+	public Message getDetailMessage(Message messageVo) throws SQLException{
 		
-		return sqlSession.selectOne("message.getDetailMessage", messageVo);
+		EntityManager em = DBUtil.getEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		Message msgOne = null;
+		
+		try {
+			tx.begin();
+			
+			msgOne = em.createQuery("SELECT M FROM Message M WHERE no=:no", Message.class).setParameter("no", messageVo.getNo()).getSingleResult();
+			
+			if(msgOne != null) {
+				System.out.println(msgOne);
+			}else {
+				System.out.println("검색 요청한 메세지는 미존재합니다");
+			}
+
+			tx.commit();
+		
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			em.close();
+		}
+		
+		return (Message) msgOne;
 	}
 	
-	
-	public int sendMessage(Message messageVo ) {
+	public boolean sendMessage(Message messageVo ) {
 		
-		int count = sqlSession.insert("message.sendMessage", messageVo);
+		EntityManager em = DBUtil.getEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		try {
+			tx.begin();
+			em.persist(messageVo);
+			tx.commit();
+			return true;
+
+		} catch (Exception e) {
+			tx.rollback();
+			e.printStackTrace();
+		} finally {
+			em.close();
+		}
 		
-		return count;
+		
+		
+		return false;
 	}
 	
 	
 	public int answerMessage(Message messageVo ) {
 		
-		int count = sqlSession.insert("message.answerMessage", messageVo);
-		
-		return count;
+//		int count = sqlSession.insert("message.answerMessage", messageVo);
+
+//		return count;
+		return 1;
 	}
 	
 	
-	public int deleteMessage(Message messageVo ) {
+	public boolean deleteMessage(Message messageVo) {
 		
-		int count = sqlSession.delete("message.deleteMessage", messageVo);
+		EntityManager em = DBUtil.getEntityManager();
+		EntityTransaction tx = em.getTransaction();
 		
-		return count;
+		try {
+			
+			tx.begin();
+			Message msgDel = em.find(Message.class, messageVo);
+			
+			if (msgDel != null) {
+				em.remove(msgDel);
+			}else {
+				System.out.println("삭제하려는 메시지가 없습니다.");
+			}
+			
+			tx.commit();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}finally {
+			em.close();
+		}
+		
+		return false;
 	}
 	
 	
-	public List<Message> getMessage(Message messageVo) {
+	public ArrayList<Message> getMessage(Message messageVo) {
 		
-		return sqlSession.selectList("message.getMessage", messageVo);
+		EntityManager em = DBUtil.getEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		List<Message> allMsg = null;
+		
+		try {
+			tx.begin();
+			
+			allMsg = em.createQuery("SELECT M FROM Message M", Message.class).getResultList();
+			
+			tx.commit();
+		
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			em.close();
+		}
+		
+		return (ArrayList<Message>) allMsg;
 	}
 }

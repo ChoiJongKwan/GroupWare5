@@ -1,5 +1,6 @@
 package team3.groupware5.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +15,14 @@ public class MessageService {
 	@Autowired
 	private MessageDAO messageDao;
 	
-	public Message getDetailMessage(Message messageVo) {
+	public Message getDetailMessage(Message messageVo) throws SQLException {
 		
 		return messageDao.getDetailMessage(messageVo);
 		
 	}
-	public int sendMessage(Message messageVo) {
+	public boolean sendMessage(Message messageVo) {
 		
-		int result = messageDao.sendMessage(messageVo);
-		
-		return result;
+		return messageDao.sendMessage(messageVo);
 	}
 	
 	public int answerMessage(Message messageVo) {
@@ -33,11 +32,9 @@ public class MessageService {
 		return result;
 	}
 	
-	public int deleteMessage(Message messageVo) {
+	public boolean deleteMessage(Message messageVo) {
 		
-		int result = messageDao.deleteMessage(messageVo);
-		
-		return result;
+		return 	messageDao.deleteMessage(messageVo);
 	}
 	
 	
