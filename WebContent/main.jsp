@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-		<title>Prologue by HTML5 UP</title>
+		<title>내일 여행</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -14,15 +14,17 @@
 	</head>	
 <body class="is-preload">
 <div class="header1"  style="box-sizing: border-box;" >
-
-<span >
+<div align="center">
+<span>
+<img src="images/logo.png" style="width:130px; height:130px;" align="center">
+</span>
+<div align="right">
   <a href="${pageContext.request.contextPath}/company/logout">Logout</a>
-  </span>
- <span class="mypage_span">
-  <a href="">MyPage</a>
-  </span>
- </div>
 </div>
+</div>
+
+ </div>
+
 		<!-- Header -->
 			<div id="header2">
 
@@ -39,10 +41,9 @@
 						<nav id="nav">
 							<ul>
 								<li><a href="BoardServlet/boardallview"><span class="icon solid fa-home">자유 게시판</span></a></li>
-								<li><a href="NoticeServlet/noticeallview"><span class="icon solid fa-home">공지사항</span></a></li>
 								<li><a href="search/SearchServlet/allView" id="portfolio-link"><span class="icon solid fa-th">사원조회</span></a></li>
-								<li><a href="#about" id="about-link"><span class="icon solid fa-user">About Me</span></a></li>
-								<li><a href="#contact" id="contact-link"><span class="icon solid fa-envelope">Contact</span></a></li>
+								<li><a href="message/list" id="portfolio-link"><span class="icon solid fa-envelope">메시지</span></a></li>
+								<li><a href="todolist/allview" id="portfolio-link"><span class="icon solid fa-envelope">Todolist</span></a></li>
 							</ul>
 						</nav>
 
@@ -72,10 +73,8 @@
 						<div class="container">
 
 							<header>
-								<h2 class="alt">Hi! I'm <strong>Prologue</strong>, a <a href="http://html5up.net/license">free</a> responsive<br />
-								site template designed by <a href="http://html5up.net">HTML5 UP</a>.</h2>
-								<p>Ligula scelerisque justo sem accumsan diam quis<br />
-								vitae natoque dictum sollicitudin elementum.</p>
+								내일여행에 오신걸 환영합니다~
+								
 							</header>
 
 
