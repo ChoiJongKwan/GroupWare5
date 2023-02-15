@@ -7,16 +7,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-function sendDelete() {
-	document.requestForm.command.value ="/delete";
-	document.requestForm.submit();
-}
-
 </script>
 
 </head>
 <body>
-<form name="requestForm" method="post" action="delete">
+
 <table align="center" border="1" cellpadding="5" cellspacing="2" width="100%" bordercolordark="white" bordercolorlight="black">
 	<colgroup>
 		<col width="20%"/>
@@ -88,7 +83,8 @@ function sendDelete() {
 		        <td bgcolor="">
 		            <p align="center"><span style="font-size:9pt;">		
 						<input type="hidden" name="num" value="${e.num}">
-						<button onclick="sendDelete()">삭제 </button>
+						<%-- <button onclick="sendDelete(${e.num})">삭제 </button> --%>
+						<button onclick="location.href='delete?num=${e.num}'">삭제 </button>
 					</span></p>
 		        </td>
 		    </tr>
@@ -98,7 +94,7 @@ function sendDelete() {
     </c:choose>
 </table>
 	
-</form>
+
 <hr>
 <div align=right>
 <span style="font-size:9pt;">&lt;<a href="../todolist/write.html">일정추가 </a>&gt;</span></div>

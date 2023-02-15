@@ -6,34 +6,6 @@
 </head>
 <SCRIPT language=javascript>
 
-/*각 입력 input tag 인 입력 form에 엽력 여부 검증하는 java script 코드
- * 
- */
-function checkValid() {
-    var f = window.document.writeForm;
-		
-	if ( f.id.value == "") {
-	    alert( "작성자를 입력해 주세요." );
-		return false;
-    }
-	if ( f.email.value == "" ) {
-		alert( "전자메일을 입력해 주세요." );
-		return false;
-	}
-	if ( f.name.value == "" ) {
-		alert( "제목을 입력해 주세요." );
-		return false;
-	}
-	if ( f.password.value == "" ) {
-        alert( "비밀번호를 입력해 주세요" );
-        return false;
-    }
-	if ( f.info.value == "" ) {
-        alert( "글 내용을 입력해 주세요." );
-        return false;
-    }
-    return true;
-}
 function txInput(Obj,String)
 {
   document.getElementById(Obj).value = String;
@@ -102,7 +74,7 @@ function txInput(Obj,String)
 </form>
 
 <hr>
-<div align=right><span style="font-size:9pt;">&lt;<a href="">리스트로 돌아가기</a>&gt;</span></div>
+<div align=right><span style="font-size:9pt;">&lt;<a href="../todolist/allview">리스트로 돌아가기</a>&gt;</span></div>
 
 </BODY>
 </HTML>
