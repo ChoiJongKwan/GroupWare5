@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>cart.jsp</title>
+<title>notice list read</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,11 +16,19 @@
 <link rel="stylesheet" href="../assets/css/yy.css" />
 
 
-</head>
+</head>	
 <body class="is-preload">
-	<div class="header1" style="box-sizing: border-box;">
-		<h1>header</h1>
-	</div>
+<div class="header1"  style="box-sizing: border-box;" >
+<div align="center">
+<span>
+<img src="../images/logo.png" style="width:130px; height:130px;" align="center">
+</span>
+<div align="right">
+  <a href="${pageContext.request.contextPath}/company/logout">Logout</a>
+</div>
+</div>
+
+ </div>>
 	<!-- Header -->
 	<div id="header2">
 
@@ -38,16 +46,10 @@
 			<!-- Nav -->
 			<nav id="nav">
 				<ul>
-					<li><a href="../BoardServlet/boardallview"><span
-							class="icon solid fa-home">자유 게시판</span></a></li>
-					<li><a href="../NoticeServlet/noticeallview"><span
-							class="icon solid fa-home">공지사항</span></a></li>
-					<li><a href="#portfolio" id="portfolio-link"><span
-							class="icon solid fa-th">Portfolio</span></a></li>
-					<li><a href="#about" id="about-link"><span
-							class="icon solid fa-user">About Me</span></a></li>
-					<li><a href="#contact" id="contact-link"><span
-							class="icon solid fa-envelope">Contact</span></a></li>
+					<li><a href="../BoardServlet/boardallview"><span class="icon solid fa-home">자유 게시판</span></a></li>
+					<li><a href="../search/SearchServlet/allView" id="portfolio-link"><span class="icon solid fa-th">사원조회</span></a></li>
+					<li><a href="../message/list" id="portfolio-link"><span class="icon solid fa-envelope">메시지</span></a></li>
+					<li><a href="../todolist/allview" id="portfolio-link"><span class="icon solid fa-envelope">Todolist</span></a></li>
 				</ul>
 			</nav>
 
@@ -86,9 +88,6 @@
 					</p>
 				</td>
 			</tr>
-			<%--
-			request.setAttribute("resultContent", gContent);  GuestBookBean객체
-		--%>
 
 			<tr>
 				<td width="100" height="20">
@@ -141,11 +140,6 @@
 
 
 		<hr>
-		<div align=right>
-			<span style="font-size: 12pt;">&lt;<a
-				href="mandoo?category=mdservice&command=list">리스트로 돌아가기</a>&gt;
-			</span>
-		</div>
 
 
 		<br>

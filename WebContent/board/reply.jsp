@@ -8,7 +8,7 @@
 <html>
 <head>
  <link rel="stylesheet" href="/css/bootstrap.css">
-<title>Insert title here</title>
+<title>freeboard reply</title>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
@@ -48,7 +48,6 @@
 </div>
 <script>
 
-	//댓글입력 메서드
  	function fn_comment(no){
 	
 		$("#reply").val();
@@ -60,9 +59,7 @@
 			  url:'../BoardServlet/addreply?boardNo='+no+'&content='+text
 			})
 			.finally(function () {
-				//댓글 리스트 불러오기
 				reqResAxios2();
-				//text박스 초기화
 				document.getElementById("reply").value = ``;
 			 });
 	
@@ -71,12 +68,10 @@
 	
 	
 
-	//초기 실행 댓글리스트(로딩시 바로 실행)
 	(function reqResAxios(){
 		 reqResAxios2();
 	})();
 	
-	//댓글 출력 메서드 
 	function reqResAxios2(){
 		axios({
 			  method: 'POST',
@@ -89,53 +84,13 @@
 		});
 	}
 	
-	
-	/*  function drawTable(list) {
-	  document.getElementById("commentList").innerHTML = ``;
 
-	  let table = document.createElement("table");  
-	  table.classList.add('w3-table-all');
-
-	  let tr = document.createElement("tr");  
-	  let th = document.createElement("th"); 
-
-	  th.style.textAlign = 'center';
-	  th.innerHTML = '';
-	  tr.appendChild(th); 
-	  th = document.createElement("th");
-	  th.style.textAlign = 'center';
-	
-	  th.innerHTML = '내용';
-	  tr.appendChild(th);
-	  table.appendChild(tr);  
-
-	  console.log(list);
-	  
-	  list.forEach(function (item) {
-		    let tr = document.createElement("tr");
-		    tr.classList.add('w3-hover-green');
-
-		  
-		    for (let key in item) { 
-		      let td = document.createElement("td");
-		      td.style.textAlign = 'center';
-		      td.innerHTML = item[key];
-		      tr.appendChild(td);
-		    };
-
-		    table.appendChild(tr);
-		  });
-
-	  
-	  return document.getElementById("commentList").appendChild(table);
-	}  */ 
 	
  	function drawTable(list) {
 		  document.getElementById("commentList").innerHTML = ``;
 		  
 		  let fieldset =	document.createElement("fieldset");
 		  let div = document.createElement("div"); 
-		  //div.style.width = 75px;
 		 
 		  
 		  div.appendChild(fieldset);
@@ -151,13 +106,7 @@
 			    let br =document.createElement("br");
 			    div.appendChild(br);
 			    legend.innerHTML = item[key];
-			   /*  button1.type = "button";
-			    button1.onclick = "update(${replyList.no})";
-			    button1.innerHTML = "수정";	     
-			    
-			    button2.type = "button";
-			    button2.onclick = "delete(${replyList.no})";
-			    button2.innerHTML = "삭제"; */ 
+
 			    
 			    
 			    fieldset.appendChild(legend);
@@ -166,25 +115,12 @@
 			    };
 			   	
 			    div.appendChild(fieldset);
-			    /* div.appendChild(button1);
-			   	div.appendChild(button2); */
+
 			  });
 
 		  
 		  return document.getElementById("commentList").appendChild(div);
 		}  
-	
-	 
-
-	/* function update(){
-		console.log("update");
-	}
-	
-	function delete(){
-		console.log("delete");
-	} */
-	
-
 
 
 </script>

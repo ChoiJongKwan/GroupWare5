@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>cart.jsp</title>
+<title>freeboard read</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,32 +14,9 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 
-			<script language=javascript>
 
-				function sendUpdate() {
-					document.requestForm.category.value = "mdservice";
-					document.requestForm.command.value = "updateForm";
-					
-					document.requestForm.submit();
-				}
 
-				
-				function sendDelete() {
-					
-					var pw = prompt("삭제할 게시물의 비밀번호를 입력하세요");
-
-					if (pw) {//데이터가 있으면 true
-						document.requestForm.category.value = "mdservice";
-						document.requestForm.command.value = "delete";
-						document.requestForm.pw.value = pw;
-						document.requestForm.submit();
-					} else {
-						return false;
-					}
-				}
-			</script>
-
-			</HEAD>
+</HEAD>
 
 			<table align="center" cellpadding="5" cellspacing="2" width="60%"
 				border='1'>
@@ -51,9 +28,6 @@
 						</p>
 					</td>
 				</tr>
-				<%--
-			request.setAttribute("resultContent", gContent);  GuestBookBean객체
-		--%>
 
 				<tr>
 					<td width="100" height="20">
@@ -104,17 +78,10 @@
 				<tr>
 					<td height="20" colspan="4" align="center" valign="middle">
 
-						<%-- <form name="requestForm" method="post" action="mandoo">
-							<input type="hidden" name="mdserviceNo"
-								value="${requestScope.resultContent.mdserviceNo}"> 
-								<input type="hidden" name="command" value="">
-								<input type="hidden" name="category" value="">
-								 <input type="hidden" name="pw" value=""> --%>
 							<div id = "myId">
 							<button type="button" onClick="location.href='../board/update.jsp?no=${boardData.no}'">수정</button>
 							<button type="button" onclick="message(); location.href='../BoardServlet/boarddelete'">삭제</button>
 							</div> 
-					<%--	</form>  --%>
 
 					</td>
 				</tr>
@@ -123,8 +90,8 @@
 			
 			<hr>
 			<div align=right>
-				<span style="font-size: 12pt;">&lt;<a
-					href="mandoo?category=mdservice&command=list">리스트로 돌아가기</a>&gt;
+				<span style="font-size: 12pt;">&lt;
+				<a href="${pageContext.request.contextPath}/BoardServlet/boardallview">리스트로 돌아가기</a>&gt;
 				</span>
 			</div>
 			
@@ -134,15 +101,6 @@
 
 <script>
 
-/* (function myId(){
-	var con = document.getElementById("myId");
-	
-	if( ${boardData.employeeNo.employeeName} == ${myId} ){
-		console.log(${boardData.employeeNo.employeeName});
-		console.log(${myId});
-		con.style.display = "none";
-	}
-})(); */
 
 function message(){
 	var pw = prompt("삭제할 게시물의 비밀번호를 입력하세요");

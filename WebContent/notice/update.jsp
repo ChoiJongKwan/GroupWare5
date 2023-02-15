@@ -1,38 +1,94 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-<title>cart.jsp</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<style>
+
+</style>
+<title>notice update</title>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no" />
+
+<link rel="preconnect1" href="https://fonts.googleapis.com">
+<link rel="preconnect2" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/yy.css" />
 
 
-</head>
-<body>
+
+</head>	
+<body class="is-preload">
+<div class="header1"  style="box-sizing: border-box;" >
+<div align="center">
+<span>
+<img src="../images/logo.png" style="width:130px; height:130px;" align="center">
+</span>
+<div align="right">
+  <a href="${pageContext.request.contextPath}/company/logout">Logout</a>
+</div>
+</div>
+
+ </div>
+	<!-- Header -->
+	<div id="header2">
+
+		<div class="top">
+
+			<!-- Logo -->
+			<div id="logo">
+				<span class="image avatar48">
+					<img src="../images/avatar.jpg" alt="" />
+				</span>
+				<h1 id="title">유재석</h1>
+				<p>인사팀</p>
+			</div>
+
+			<!-- Nav -->
+			<nav id="nav">
+				<ul>
+					<li><a href="../BoardServlet/boardallview"><span class="icon solid fa-home">자유 게시판</span></a></li>
+					<li><a href="../search/SearchServlet/allView" id="portfolio-link"><span class="icon solid fa-th">사원조회</span></a></li>
+					<li><a href="../message/list" id="portfolio-link"><span class="icon solid fa-envelope">메시지</span></a></li>
+					<li><a href="../todolist/allview" id="portfolio-link"><span class="icon solid fa-envelope">Todolist</span></a></li>
+				</ul>
+			</nav>
+
+		</div>
+
+		<div class="bottom">
+
+			<!-- Social Icons -->
+			<ul class="icons">
+				<li><a href="#" class="icon brands fa-twitter"><span
+						class="label">Twitter</span></a></li>
+				<li><a href="#" class="icon brands fa-facebook-f"><span
+						class="label">Facebook</span></a></li>
+				<li><a href="#" class="icon brands fa-github"><span
+						class="label">Github</span></a></li>
+				<li><a href="#" class="icon brands fa-dribbble"><span
+						class="label">Dribbble</span></a></li>
+				<li><a href="#" class="icon solid fa-envelope"><span
+						class="label">Email</span></a></li>
+			</ul>
+
+		</div>
+
+	</div>
+
+	<!-- Main -->
+	<br><br>
+	<div id="main" align="center">
 
 
 <form action="../NoticeServlet/noticeupdate" method="post">
 	  <!-- update Form  -->	
 	  <table border="1" cellspacing="1" width="60%">
-		<%--  <tr>
-			<td width=30%>사용자 아이디</td>
-			<td width=70%>	
-				${notice.no}
-			</td>
-		  </tr> 
- 		  <tr>
- 			<td width="30%">이름</td>
-			<td width="70%">	
-				${sessionScope.cvo.name}
-			</td>
-		  </tr> --%>
 		   <tr>
 		
 			<td width="30%">제목</td>
@@ -60,7 +116,7 @@
 
 	<input type="submit" value="수정" > &nbsp;
 	<input type="reset" value="취소">&nbsp;
-	<input type="button" value="모두보기" Onclick="location.href='CustomerServlet/allView'">
+	
 </form>
 			<hr>
 			<div align=right>
@@ -69,12 +125,13 @@
 				</span>
 			</div>
 
-			<!-- Footer -->
-			<footer class="w3-center w3-light-grey w3-padding-32">
-				<p>
-					Powered by <a href="https://www.w3schools.com/w3css/default.asp"
-						title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a>
-				</p>
-			</footer>
+			<!-- Scripts -->
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/jquery.scrolly.min.js"></script>
+		<script src="../assets/js/jquery.scrollex.min.js"></script>
+		<script src="../assets/js/browser.min.js"></script>
+		<script src="../assets/js/breakpoints.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/main.js"></script>
 </body>
 </html>

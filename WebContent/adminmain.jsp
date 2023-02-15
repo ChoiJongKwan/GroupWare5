@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,7 +9,9 @@
 <style>
 
 </style>
-<title>freeboard update</title>
+<title>내일 여행</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -38,9 +44,8 @@
 
 			<!-- Logo -->
 			<div id="logo">
-				<span class="image avatar48">
-					<img src="../images/avatar.jpg" alt="" />
-				</span>
+				<span class="image avatar48"><img src="../images/avatar.jpg"
+					alt="" /></span>
 				<h1 id="title">유재석</h1>
 				<p>인사팀</p>
 			</div>
@@ -79,53 +84,69 @@
 
 	<!-- Main -->
 	<br><br>
-	<div id="main" align="center">
+	<div id="main">
+	<form action = "NoticeServlet/boardallview">
+		<div class="page-title">
+			<div class="container1">
+				<h3>공지사항</h3>
+			</div>
+		</div>
 
- <form action="../BoardServlet/boardinsert" method="post">
 
+		<!-- board list area -->
+		<div id="board-list">
+			<div class="container1">
+				<table class="board-table">
+					<thead>
+						<tr>
+							<th scope="col">번호</th>
+							<th scope="col">제목</th>
+							<th scope="col">이름</th>
+							<th scope="col">작성일</th>
+						</tr>
+					</thead>
+					<tbody>
 
-<table align="center" cellpadding="5" cellspacing="2" width="80%" border="1">
+						<c:choose>
+							<c:when test="${empty requestScope.allData}">
+								<tr>
+									<td colspan="5">
+										<p align="center">
+											<b><span style="font-size: 12pt;">등록된 방명록이 없습니다.</span></b>
+										</p>
+									</td>
+								</tr>
+							</c:when>
+							<c:otherwise>
 
-    <tr>
-        <td width="1220" height="20" colspan="2" bgcolor="black">
-            <p align="center"><font color="white" size="3"><b>리뷰 작성</b></font></p>
-        </td>
-    </tr>
+								<c:forEach items="${requestScope.allData}" var="e">
 
-    <tr>
-        <td width="150" height="20">
-            <p align="right"><b><span style="font-size:9pt;">제 목</span></b></p>
-        </td>
-        <td width="450" height="20" ><b><span style="font-size:9pt;">
-		<input type=text name="title" size="50"></span></b></td>
-    </tr>
-    <tr>
-        <td width="150" height="20">
-            <p align="right"><b><span style="font-size:9pt;">내 용</span></b></p>
-        </td>
-        <td width="450" height="20"><b><span style="font-size:9pt;">
-		<textarea name="content" cols="50" rows="10"></textarea></span></b></td>
-    </tr>
-    <tr>
-        <td width="150" height="20">
-            <p align="right"><b><span style="font-size:9pt;">비밀번호</span></b></p>
-        </td>
-        <td width="450" height="20">
-        	<b><span style="font-size:9pt;">
-        		<input type=password name="password" size="12">(글 수정, 삭제시 필요합니다.)
-        	   </span></b>
-        </td>
-    </tr>
-    <tr>
-        <td width="450" height="20" colspan="2" align="center"><b><span style="font-size:9pt;">
-        <input type=submit value=글쓰기> 
-        <input type=reset value=다시쓰기></span></b></td>
-    </tr>
-</table>
-</form>
-</div>
-<hr>
-<!-- Scripts -->
+									<tr>
+										<td>${e.no}</td>
+										<th><a href="../NoticeServlet/noticeread?no=${e.no}">${e.title}</a></th>
+										<td>${e.employeeNo.employeeName}</td>
+										<td>${e.writedate}</td>
+									</tr>
+
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	<br>
+	<div align="right">
+	<button type="button" onclick="location.href = '../notice/write.html'" style="background-color:#555">
+		<i class='far fa-file-alt' style='font-size:12px;color:white' >&nbsp;글쓰기</i>
+		
+	</button>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+	</div>
+	</form>
+	<br><br>
+
+		<!-- Scripts -->
 		<script src="../assets/js/jquery.min.js"></script>
 		<script src="../assets/js/jquery.scrolly.min.js"></script>
 		<script src="../assets/js/jquery.scrollex.min.js"></script>
@@ -133,6 +154,5 @@
 		<script src="../assets/js/breakpoints.min.js"></script>
 		<script src="../assets/js/util.js"></script>
 		<script src="../assets/js/main.js"></script>
-
 </body>
 </html>

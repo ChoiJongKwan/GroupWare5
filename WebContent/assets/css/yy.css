@@ -195,8 +195,8 @@ iframe, h1, h2, h3, h4, h5, h6, blockquote,
 pre, a, abbr, acronym, address, big, cite,
 code, del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var, 
-u, i, center, dl, dt, dd, ol, ul, li, fieldset,
-form, label, legend, caption, tbody,
+u, i, center, dl, dt, dd, ol, ul, li,
+form, label,  caption, tbody,
 tfoot, thead, article, aside,
 canvas, details, embed, figure, figcaption,
 footer, header, hgroup, menu, nav, output, ruby,
@@ -244,7 +244,7 @@ input::-moz-focus-inner {
 	padding: 0;
 }
 
-input, select, textarea {
+input, select {
 	-moz-appearance: none;
 	-webkit-appearance: none;
 	-ms-appearance: none;
@@ -281,7 +281,7 @@ input, select, textarea {
 			transition: none !important;
 		}
 
-	input, textarea, select {
+	input,  select {
 		font-family: 'Source Sans Pro', sans-serif;
 		font-size: 19pt;
 		font-weight: 300;
@@ -2385,7 +2385,7 @@ input, select, textarea {
 
 		/* Basic */
 
-			body, input, textarea, select {
+			body, input,  select {
 				font-size: 17pt;
 			}
 

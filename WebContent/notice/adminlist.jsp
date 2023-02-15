@@ -9,7 +9,7 @@
 <style>
 
 </style>
-<title>Prologue by HTML5 UP</title>
+<title>admin notice</title>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <meta charset="utf-8" />
@@ -24,15 +24,19 @@
 
 
 
-</head>
+</head>	
 <body class="is-preload">
-	<div class="header1" style="box-sizing: border-box;">
-<!-- 	<div align="right">
-	<br><br>
-	<i class='far fa-file-alt' style='font-size:30px;color:black' />&nbsp;&nbsp;&nbsp;
-	</div> -->
-		<h1>header</h1>
-	</div>
+<div class="header1"  style="box-sizing: border-box;" >
+<div align="center">
+<span>
+<img src="../images/logo.png" style="width:130px; height:130px;" align="center">
+</span>
+<div align="right">
+  <a href="${pageContext.request.contextPath}/company/logout">Logout</a>
+</div>
+</div>
+
+ </div>
 	<!-- Header -->
 	<div id="header2">
 
@@ -50,10 +54,9 @@
 			<nav id="nav">
 				<ul>
 					<li><a href="../BoardServlet/boardallview"><span class="icon solid fa-home">자유 게시판</span></a></li>
-					<li><a href="../NoticeServlet/noticeallview"><span class="icon solid fa-home">공지사항</span></a></li>
-					<li><a href="#portfolio" id="portfolio-link"><span class="icon solid fa-th">Portfolio</span></a></li>
-					<li><a href="#about" id="about-link"><span class="icon solid fa-user">About Me</span></a></li>
-					<li><a href="#contact" id="contact-link"><span class="icon solid fa-envelope">Contact</span></a></li>
+					<li><a href="../search/SearchServlet/allView" id="portfolio-link"><span class="icon solid fa-th">사원조회</span></a></li>
+					<li><a href="../message/list" id="portfolio-link"><span class="icon solid fa-envelope">메시지</span></a></li>
+					<li><a href="../todolist/allview" id="portfolio-link"><span class="icon solid fa-envelope">Todolist</span></a></li>
 				</ul>
 			</nav>
 
@@ -90,21 +93,6 @@
 			</div>
 		</div>
 
-		<!-- board seach area -->
-		<!-- <div id="board-search">
-			<div class="container1">
-				<div class="search-window">
-					<form action="">
-						<div class="search-wrap">
-							<label for="search" class="blind">공지사항 내용 검색</label> <input
-								id="search" type="search" name="" placeholder="검색어를 입력해주세요."
-								value="">
-							<button type="submit" class="btn btn-dark">검색</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div> -->
 
 		<!-- board list area -->
 		<div id="board-list">

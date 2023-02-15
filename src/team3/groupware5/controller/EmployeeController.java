@@ -45,7 +45,10 @@ public class EmployeeController extends HttpServlet {
 				sessionData.addAttribute("employeeName", employeeService.findName(employeeNo));
 				
 				System.out.println(sessionData);
-				url = "redirect:/main.jsp";
+				
+				url = "redirect:../NoticeServlet/noticeallviewmain";
+				
+				
 			} else {
 				System.out.println("----++========");
 			}
