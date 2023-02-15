@@ -16,10 +16,9 @@ public class TodolistService {
 	
 	private Todolist vo;
 	
-
 	public ArrayList<Todolist> getTodolist() throws SQLException{
 		System.out.println("------------service----------");
-		ArrayList<Todolist> all= tdDao.getTodolistAll();
+		ArrayList<Todolist> all= tdDao.getTodolistAll();	
 		return all;
 	}
 
@@ -27,14 +26,18 @@ public class TodolistService {
 	public boolean insert(Todolist tdl) {
 		
 		return tdDao.insertTodolist(tdl);
-			
-		
 	}
 
 
 	public boolean delete(int num) {
 		
 		return tdDao.deleteTodolist(num);
+	}
+
+
+	public ArrayList<Todolist> getTodolistOne(int employeeNo) {
+		
+		return tdDao.getTodolistOne(employeeNo);
 	}
 	
 

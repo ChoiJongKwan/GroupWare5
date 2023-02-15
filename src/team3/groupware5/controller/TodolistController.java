@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,7 +29,7 @@ import team3.groupware5.vo.Todolist;
 //@Controller
 @RestController
 @RequestMapping("todolist")
-@SessionAttributes({ "empno", "email"})
+@SessionAttributes({ "employeeNo"})
 public class TodolistController {
 
 	
@@ -55,16 +56,13 @@ public class TodolistController {
 		return mv;
 	}
 	
-	@GetMapping(value =  "/view", produces = "application/json; charset=UTF-8")
-	public String view(Model model) throws SQLException {
-		String email =(String) model.getAttribute("email");
-		EmployeeDAO dao = new EmployeeDAO();
-		int a = dao.getEmployeeEmail(email);
-		Employee e = new Employee(a);
-
-		String result	= tdDao.getTodolistOne();
-		System.out.println("controller: "+ result);
-		return result;
+	@GetMapping(value =  "/viewtodolist/{employeeNo}", produces = "application/json; charset=UTF-8")
+	public ModelAndView view(@PathVariable int employeeNo) throws SQLException {			
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("list", tdSve.getTodolistOne(employeeNo));
+		mv.setViewName("../todolist/list");
+		return mv;
 	}
 	
 	
@@ -77,14 +75,10 @@ public class TodolistController {
 			@RequestParam("time") String time,
 			HttpServletResponse res) throws SQLException, IOException  {
 		System.out.println(title);
-		String email =(String) model.getAttribute("email");		
-		
-		//세션 에 저장 권장 
-		int a = dao.getEmployeeEmail(email);
-		System.out.println(a);
-		
+		int empno =(int) model.getAttribute("employeeNo");		
 		int imp= Integer.parseInt(importance);
-		Todolist todolist = new Todolist(title, content, imp, date, time, new Employee(a));
+		Employee e = new Employee(empno);
+		Todolist todolist = new Todolist(title, content, imp, date, time, e);
 		tdSve.insert(todolist);
 		model.addAttribute("todolist", todolist);
 		
