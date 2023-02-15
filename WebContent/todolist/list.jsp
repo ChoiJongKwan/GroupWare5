@@ -5,13 +5,79 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<script type="text/javascript">
-</script>
+<title>Todolist</title>
+ <link rel="preconnect1" href="https://fonts.googleapis.com">
+<link rel="preconnect2" href="https://fonts.gstatic.com" crossorigin> 
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
+	rel="stylesheet">
+  		<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css" />
+
 
 </head>
-<body>
+<body class="is-preload">
+<div class="header1"  style="box-sizing: border-box;" >
+<div align="center">
+<img src="${pageContext.request.contextPath}/images/logo.png" style="width:130px; height:130px;" align="center">
+<div style="float: right;" >
+  <a href="${pageContext.request.contextPath}/company/logout">Logout</a>
+</div>
+</div>
 
+	<!-- Header -->
+	<div id="header2">
+
+		<div class="top">
+
+			<!-- Logo -->
+			<div id="logo">
+				<span class="image avatar48">
+					<img src="../images/avatar.jpg" alt="" />
+				</span>
+				<h1 id="title">${sessionScope.name}</h1>
+				<p>${sessionScope.email}</p>
+			</div>
+
+			<!-- Nav -->
+			<nav id="nav">
+				<ul>
+					<li><a href="${pageContext.request.contextPath}/BoardServlet/boardallview"><span class="icon solid fa-home">자유 게시판</span></a></li>
+					<li><a href="${pageContext.request.contextPath}/search/SearchServlet/allView" id="portfolio-link"><span class="icon solid fa-th">사원조회</span></a></li>
+					<li><a href="${pageContext.request.contextPath}/message/list" id="portfolio-link"><span class="icon solid fa-envelope">메시지</span></a></li>
+					<li><a href="todolist/viewtodolist/${sessionScope.employeeNo}" id="portfolio-link"><span class="icon solid fa-envelope">Todolist</span></a></li>
+				</ul>
+			</nav>
+
+		</div>
+
+		<div class="bottom">
+
+			<!-- Social Icons -->
+			<ul class="icons">
+				<li><a href="#" class="icon brands fa-twitter"><span
+						class="label">Twitter</span></a></li>
+				<li><a href="#" class="icon brands fa-facebook-f"><span
+						class="label">Facebook</span></a></li>
+				<li><a href="https://github.com/ChoiJongKwan/GroupWare5" class="icon brands fa-github"><span
+						class="label">Github</span></a></li>
+				<li><a href="#" class="icon brands fa-dribbble"><span
+						class="label">Dribbble</span></a></li>
+				<li><a href="#" class="icon solid fa-envelope"><span
+						class="label">Email</span></a></li>
+			</ul>
+
+		</div>
+
+	</div>
+
+	<!-- Main -->
+	<br><br>
+	<div class="page-title" align="center" style="font-size: 50px"  >
+				<strong> Todolist</strong>	
+		</div>
+	<div id="main">
+
+
+		
 <table align="center" border="1" cellpadding="5" cellspacing="2" width="100%" bordercolordark="white" bordercolorlight="black">
 	<colgroup>
 		<col width="20%"/>
@@ -55,37 +121,36 @@
 	<c:forEach items="${requestScope.list}" var="e">
 		    <tr>
 		        <td bgcolor="">
-					<p align="center"><span style="font-size:9pt;">
+					<p align="center"><span style="font-size:15pt;">
 					${e.title}</span></p>
 					
 		        </td>
 		        <td bgcolor="">
-		            <p align="center"><span style="font-size:9pt;">		
+		            <p align="center"><span style="font-size:15pt;">		
 						${e.content}
 					</span></p>
 		        </td>
 		        <td bgcolor="">
-		            <p align="center"><span style="font-size:9pt;">		
+		            <p align="center"><span style="font-size:15pt;">		
 						${e.importance}
 					</span></p>
 		        </td>
 		        
 		        <td bgcolor="">
-		            <p align="center"><span style="font-size:9pt;">		
+		            <p align="center"><span style="font-size:15pt;">		
 						${e.date}
 					</span></p>
 		        </td>
 		        <td bgcolor="">
-		            <p align="center"><span style="font-size:9pt;">		
+		            <p align="center"><span style="font-size:15pt;">		
 						${e.time}
 					</span></p>
 		        </td>
 		        <td bgcolor="">
-		            <p align="center"><span style="font-size:9pt;">		
+		            <p align="center"><span style="font-size:15pt;">		
 						<input type="hidden" name="num" value="${e.num}">
 						<%-- <button onclick="sendDelete(${e.num})">삭제 </button> --%>
-						<button onclick="location.href='delete?num=${e.num}'">삭제 </button>
-					</span></p>
+						<button onclick="location.href='${pageContext.request.contextPath}/todolist/delete?num=${e.num}'">삭제 </button>					</span></p>
 		        </td>
 		    </tr>
 		 
@@ -94,8 +159,8 @@
     </c:choose>
 </table>
 	
-
+</div>
 <hr>
 <div align=right>
-<span style="font-size:9pt;">&lt;<a href="../todolist/write.html">일정추가 </a>&gt;</span></div>
+<span style="font-size:9pt;">&lt;<a href="${pageContext.request.contextPath}/todolist/write.html">일정추가 </a>&gt;</span></div>
 </body>

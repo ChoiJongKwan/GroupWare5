@@ -94,10 +94,10 @@ public class TodolistController {
 	}
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public void delete(@RequestParam("num") int num, HttpServletResponse res) throws SQLException, IOException  {
+	public void delete(@RequestParam("num") int num, HttpServletResponse res,Model model) throws SQLException, IOException  {
 		tdSve.delete(num);
 		System.out.println("delete() ----********-");
-		res.sendRedirect("allview");
+		res.sendRedirect("viewtodolist/"+(int) model.getAttribute("employeeNo"));
 	}
 	
 	
