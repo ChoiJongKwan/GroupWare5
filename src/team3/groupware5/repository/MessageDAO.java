@@ -13,11 +13,10 @@ import org.springframework.stereotype.Repository;
 import team3.groupware5.util.DBUtil;
 //import team3.groupware5.vo.Employee;
 import team3.groupware5.vo.Message;
-
+import team3.groupware5.vo.Todolist;
 
 @Repository
 public class MessageDAO {
-	
 
 	@Transactional
 	public Message getDetailMessage(Message messageVo) throws SQLException{
@@ -65,30 +64,18 @@ public class MessageDAO {
 			em.close();
 		}
 		
-		
-		
 		return false;
 	}
 	
 	
-	public int answerMessage(Message messageVo ) {
-		
-//		int count = sqlSession.insert("message.answerMessage", messageVo);
-
-//		return count;
-		return 1;
-	}
-	
-	
-	public boolean deleteMessage(Message messageVo) {
+	public boolean deleteMessage(int no) {
 		
 		EntityManager em = DBUtil.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		
 		try {
-			
 			tx.begin();
-			Message msgDel = em.find(Message.class, messageVo);
+			Message msgDel = em.find(Message.class, no);
 			
 			if (msgDel != null) {
 				em.remove(msgDel);
@@ -98,36 +85,43 @@ public class MessageDAO {
 			
 			tx.commit();
 			
+			return true;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
-			
 		}finally {
 			em.close();
 		}
-		
 		return false;
 	}
 	
 	
-	public ArrayList<Message> getMessage(Message messageVo) {
+	public ArrayList<Message> getMessageAll() throws SQLException {
 		
 		EntityManager em = DBUtil.getEntityManager();
-		EntityTransaction tx = em.getTransaction();
 		List<Message> allMsg = null;
 		
 		try {
-			tx.begin();
 			
-			allMsg = em.createQuery("SELECT M FROM Message M", Message.class).getResultList();
-			
-			tx.commit();
-		
+			allMsg = em.createQuery("select m from message m", Message.class).getResultList();
+
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
 			em.close();
 		}
-		
 		return (ArrayList<Message>) allMsg;
 	}
+	
+	
+	public ArrayList<Message> getMessageOne(int employeeNo) {
+		EntityManager em = DBUtil.getEntityManager();
+		List<Message> all = null;
+		try {
+			all = em.createQuery("select m from Message m where m.employeeNo.employeeNo = :employeeNo", Message.class).setParameter("employeeNo", employeeNo).getResultList();
+		} finally {
+			em.close();
+		}
+		return (ArrayList<Message>) all;
+	} 
 }

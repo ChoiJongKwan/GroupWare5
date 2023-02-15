@@ -1,20 +1,26 @@
 package team3.groupware5.controller;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import team3.groupware5.repository.EmployeeDAO;
+import team3.groupware5.repository.MessageDAO;
 import team3.groupware5.service.MessageService;
 import team3.groupware5.vo.Employee;
 import team3.groupware5.vo.Message;
@@ -26,86 +32,68 @@ import team3.groupware5.vo.Message;
 public class MessageController {
 	
 	@Autowired
-	private MessageService messageService;
+	public MessageService messageService;
+	@Autowired
+	public MessageDAO messageDao;
+	@Autowired
+	public EmployeeDAO emloyeeDao;
 
-	@RequestMapping(value ="/list")
-	public String message(Model model) {
-		
-		Message messageVo= new Message();
-		
-		Employee emp = new Employee();
-		emp.setEmployeeNo(1);
-
-		messageVo.setEmployeeNo(emp);
-		
-		List<Message> list = messageService.getMessage( messageVo );
-		
-		model.addAttribute( "list", list );
-		
-		
-		return "message/list";
-	}
 	
-	@RequestMapping(value="/view", method=RequestMethod.GET)
-	public String view(@RequestParam(value="no", required=true) int no,	Model model) throws SQLException {
+	@GetMapping(value =  "/allview", produces = "application/json; charset=UTF-8")
+	public ModelAndView allview() throws SQLException {
 		
-		Message messageVo = new Message();
-		messageVo.setNo(no);
-		Message resVo = messageService.getDetailMessage(messageVo);
+		ModelAndView mv = new ModelAndView();
 		
-//		model.addAttribute("employeeNo", resVo.getEmployeeNo());
-		model.addAttribute("content", resVo.getContent());
+		mv.addObject("list", messageService.getMessage());
+		mv.setViewName("../message/list");
 		
-		return "message/view";
+		return mv;
 	}
 	
 	
-	@RequestMapping(value="/deleteMessage", method=RequestMethod.POST)
-	public String deleteMessage(@ModelAttribute Message messageVo) {
+	@GetMapping(value =  "/viewmessage/{employeeNo}", produces = "application/json; charset=UTF-8")
+	public ModelAndView view(@PathVariable int employeeNo) throws SQLException {	
 		
-		boolean succeed = messageService.deleteMessage(messageVo);
-
-		return "message/index";
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("list", messageService.getMessageOne(employeeNo));
+		mv.setViewName("../message/list");
+		
+		return mv;
 	}
 	
 	
-	@ResponseBody
-	@RequestMapping(value="/sendMessage", method=RequestMethod.POST)
-	public String sendMessage(Model model,
+	@RequestMapping(value = "/send")
+	public void send(Model model,
 		@RequestParam("content") String content,
-		@RequestParam("writedate") String writedate) throws SQLException  {
-	
-		String email =(String) model.getAttribute("email");
-		EmployeeDAO dao = new EmployeeDAO();
-		int a = dao.getEmployeeEmail(email);
-		Employee e = new Employee(a);
+		@RequestParam("writedate") String writedate,
+		HttpServletResponse res) throws SQLException, IOException  {
+		
+		int empno = (int) model.getAttribute("employeeNo");		
+		Employee e = new Employee(empno);
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");//날짜 출력 형식
 		String now = sdf.format(System.currentTimeMillis());//오늘 날짜로 초기화
-//		Message message = new Message(content, now, e);
-//		messageService.sendMessage(message);
-//		model.addAttribute("message", message);
 		
+		Message message = new Message(e, content, now);
+		messageService.sendMessage(message);
+		model.addAttribute("message", message);
 		
-		return "redirect:message/list";
+		res.sendRedirect("allview");
 	}
 	
-//	@ResponseBody
-//	@RequestMapping(value="/sendMessage", method=RequestMethod.POST)
-//	public String sendMessage(@ModelAttribute Message messageVo) {
-//		
-//		Message msgOne = new Message();
-//		boolean succeed = messageService.sendMessage(msgOne);
-//		
-//		return "message/sendmessage";
-//	}
 	
-	@ResponseBody
-	@RequestMapping(value="/answerMessage", method=RequestMethod.POST)
-	public String answerMessage(@ModelAttribute Message messageVo) {
-		
-		int count = messageService.answerMessage(messageVo);
-		
-//		return JSONResult.success(count);
-		return "";
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public void delete(@RequestParam("no") int no, HttpServletResponse res, Model model) throws SQLException, IOException {
+		messageService.delete(no);
+		res.sendRedirect("viewmessage/" + (int) model.getAttribute("employeeNo"));
 	}
+	
+	
+	
+	@ExceptionHandler
+	public String exceptionHandler(SQLException e) {
+		e.printStackTrace();
+		return e.getMessage();
+   }
 }

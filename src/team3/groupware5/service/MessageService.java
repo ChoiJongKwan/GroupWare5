@@ -1,7 +1,7 @@
 package team3.groupware5.service;
 
 import java.sql.SQLException;
-import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,10 @@ import team3.groupware5.vo.Message;
 public class MessageService {
 
 	@Autowired
-	private MessageDAO messageDao;
+	public MessageDAO messageDao;
+	
+	private Message messageVo;
+	
 	
 	public Message getDetailMessage(Message messageVo) throws SQLException {
 		
@@ -25,23 +28,22 @@ public class MessageService {
 		return messageDao.sendMessage(messageVo);
 	}
 	
-	public int answerMessage(Message messageVo) {
-		
-		int result = messageDao.answerMessage(messageVo);
-		
-		return result;
-	}
 	
-	public boolean deleteMessage(Message messageVo) {
+	public boolean delete(int no) {
 		
-		return 	messageDao.deleteMessage(messageVo);
+		return 	messageDao.deleteMessage(no);
 	}
 	
 	
-	public List<Message> getMessage(Message messageVo) {
+	public ArrayList<Message> getMessage() throws SQLException {
 		
-		List<Message> list = messageDao.getMessage(messageVo);
+		ArrayList<Message> allMsg = messageDao.getMessageAll();	
 		
-		return list;
+		return allMsg;
+	}
+
+	public ArrayList<Message> getMessageOne(int employeeNo) {
+		
+		return messageDao.getMessageOne(employeeNo);
 	}
 }
