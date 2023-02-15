@@ -150,6 +150,11 @@
 			</div>
 		</div>
 	<br>
+	<div align="right">
+	<button type="button" onclick="location.href = '../notice/write.html'" style="background-color:#555">
+		<i class='far fa-file-alt' style='font-size:12px;color:white' >&nbsp;글쓰기</i>
+		
+	</button>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 	</div>
 	<br><br>
 

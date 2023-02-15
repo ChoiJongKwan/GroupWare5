@@ -108,6 +108,26 @@ public class EmployeeDAO {
 		}
 		return data;
 	}
+	
+	//역할 찾기
+	public String findrole(int employeeNo) throws SQLException {
+
+	      EntityManager em = DBUtil.getEntityManager();
+	      String role = null;
+
+	      try {
+
+	    	  role = (String) em.createNamedQuery("Employee.getEmployeeRole").setParameter("employeeNo", employeeNo).getSingleResult();
+
+	      } catch (Exception e) {
+	         e.printStackTrace();
+
+	      } finally {
+	         em.close();
+
+	      }
+	      return role;
+	   }
 
 
 }

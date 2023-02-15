@@ -2,24 +2,29 @@ package team3.groupware5.vo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 @Getter
 @Setter
-@ToString
+
+@NamedQuery(name = "Reply.findReplyNo",
+query = "select r from Reply r where r.boardNo.no = :boardNo")
 
 @Entity
 public class Reply {
@@ -41,10 +46,26 @@ public class Reply {
 	@JoinColumn(name="employeeNo")
 	private Employee employeeNo;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@NonNull
 	@JoinColumn(name="boardNo")
 	private Board boardNo;
+	
+	 @Override
+	    public String toString() {
+	       StringBuilder builder = new StringBuilder();
+	       builder.append("게시판 번호 : ");
+	       builder.append(no);
+	       builder.append(", 내용 : ");
+	       builder.append(content);
+	       builder.append(", 작성일 : ");
+	       builder.append(writedate);
+	       builder.append(", 사원번호: ");
+	       builder.append(employeeNo.getEmployeeNo());
+	       builder.append(", 게시판번호: ");
+	       builder.append(boardNo.getNo());
+	       return builder.toString();
+	    }
 	
 	
 }

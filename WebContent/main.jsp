@@ -38,6 +38,7 @@
 					<!-- Nav -->
 						<nav id="nav">
 							<ul>
+								<li><a href="BoardServlet/boardallview"><span class="icon solid fa-home">자유 게시판</span></a></li>
 								<li><a href="NoticeServlet/noticeallview"><span class="icon solid fa-home">공지사항</span></a></li>
 								<li><a href="search/SearchServlet/allView" id="portfolio-link"><span class="icon solid fa-th">사원조회</span></a></li>
 								<li><a href="#about" id="about-link"><span class="icon solid fa-user">About Me</span></a></li>

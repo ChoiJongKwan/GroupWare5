@@ -56,6 +56,14 @@ public class Notice {
 	@JoinColumn(name="employeeNo")
 	private Employee employeeNo;
 	
+	public Notice (int no,String title,String content,String password,Employee employeeno) {
+		this.no=no;
+		this.title = title;
+		this.content= content;
+		this.password= password;
+		this.employeeNo =employeeno;
+	}
+	
 	 @Override
 	    public String toString() {
 	       StringBuilder builder = new StringBuilder();

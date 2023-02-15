@@ -18,4 +18,20 @@ public class NoticeService {
 		return noticeDAO.writeNotice(notice);
 	}
 	
+	public ArrayList<Notice> getAllNotices() {
+		ArrayList<Notice> list = noticeDAO.getAllNotices();
+		return list;
+	}
+	
+	public Notice getNoticeNo(int no) {
+		return noticeDAO.getNoticeNo(no);
+	}
+	
+	public boolean updateNotice(Notice notice) {
+		return noticeDAO.updateNotice(notice);
+	}
+	
+	public boolean deleteNotice(int boardno) {
+		return noticeDAO.deleteNotice(boardno);
+	}
 }

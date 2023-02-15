@@ -6,10 +6,7 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
+
 
 section.notice {
 	padding: 80px 0;
@@ -193,11 +190,11 @@ section.notice {
 	width: 1px;
 	height: 1px;
 }
-html, body, div, span, applet, object,
-iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
+body, div, span, applet, object,
+iframe, h1, h2, h3, h4, h5, h6, blockquote,
 pre, a, abbr, acronym, address, big, cite,
 code, del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var, b,
+small, strike, strong, sub, sup, tt, var, 
 u, i, center, dl, dt, dd, ol, ul, li, fieldset,
 form, label, legend, caption, tbody,
 tfoot, thead, article, aside,
@@ -336,7 +333,7 @@ input, select, textarea {
 		margin: 2em 0 0 0;
 	}
 
-	strong, b {
+	strong {
 		font-weight: 300;
 		color: #666;
 	}
@@ -384,7 +381,7 @@ input, select, textarea {
 		font-style: italic;
 	}
 
-	p, ul, ol, dl {
+	 ul, ol, dl {
 		margin-bottom: 2em;
 	}
 
@@ -2090,45 +2087,6 @@ input, select, textarea {
 
 /* Button */
 
-	input[type="button"],
-	input[type="submit"],
-	input[type="reset"],
-	button,
-	.button {
-		position: relative;
-		display: inline-block;
-		border-radius: 0.35em;
-		color: #fff !important;
-		text-decoration: none;
-		padding: 0.75em 2.5em 0.75em 2.5em;
-		background-color: #8ebebc;
-		border: 0;
-		cursor: pointer;
-		background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), url("images/overlay.png");
-		background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), url("images/overlay.png");
-		background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), url("images/overlay.png");
-		background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)), url("images/overlay.png");
-		-moz-transition: background-color 0.35s ease-in-out;
-		-webkit-transition: background-color 0.35s ease-in-out;
-		-ms-transition: background-color 0.35s ease-in-out;
-		transition: background-color 0.35s ease-in-out;
-	}
-
-		input[type="button"]:hover,
-		input[type="submit"]:hover,
-		input[type="reset"]:hover,
-		button:hover,
-		.button:hover {
-			background-color: #9ececc;
-		}
-
-		input[type="button"]:active,
-		input[type="submit"]:active,
-		input[type="reset"]:active,
-		button:active,
-		.button:active {
-			background-color: #7eaeac;
-		}
 
 /* Item */
 

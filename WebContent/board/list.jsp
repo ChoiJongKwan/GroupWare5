@@ -10,8 +10,6 @@
 
 </style>
 <title>Prologue by HTML5 UP</title>
-<meta name='viewport' content='width=device-width, initial-scale=1'>
-<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -27,10 +25,6 @@
 </head>
 <body class="is-preload">
 	<div class="header1" style="box-sizing: border-box;">
-<!-- 	<div align="right">
-	<br><br>
-	<i class='far fa-file-alt' style='font-size:30px;color:black' />&nbsp;&nbsp;&nbsp;
-	</div> -->
 		<h1>header</h1>
 	</div>
 	<!-- Header -->
@@ -40,8 +34,9 @@
 
 			<!-- Logo -->
 			<div id="logo">
-				<span class="image avatar48"><img src="../images/avatar.jpg"
-					alt="" /></span>
+				<span class="image avatar48">
+					<img src="../images/avatar.jpg" alt="" />
+				</span>
 				<h1 id="title">유재석</h1>
 				<p>인사팀</p>
 			</div>
@@ -86,7 +81,7 @@
 
 		<div class="page-title">
 			<div class="container1">
-				<h3>공지사항</h3>
+				<h3>자유게시판</h3>
 			</div>
 		</div>
 
@@ -136,7 +131,7 @@
 
 									<tr>
 										<td>${e.no}</td>
-										<th><a href="../NoticeServlet/noticeread?no=${e.no}">${e.title}</a></th>
+										<th><a href="../BoardServlet/boardread?no=${e.no}">${e.title}</a></th>
 										<td>${e.employeeNo.employeeName}</td>
 										<td>${e.writedate}</td>
 									</tr>
@@ -150,8 +145,14 @@
 			</div>
 		</div>
 	<br>
+	<div align="right">
+	<button type="button" onclick="location.href = '../board/write.html'" style="background-color:#555">
+		<i class='far fa-file-alt' style='font-size:18px;color:white' >&nbsp;글쓰기</i>
+		
+	</button>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 	</div>
 	<br><br>
+
 
 		<!-- Scripts -->
 		<script src="../assets/js/jquery.min.js"></script>

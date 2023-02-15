@@ -47,6 +47,10 @@ public class EmployeeService {
 			return pw;
 		}
 	}
+	//역할 찾기
+	public String fineRole(int employeeNo) throws Exception {
+	      return employeeDao.findrole(employeeNo);
+	   }
 
 	
 }

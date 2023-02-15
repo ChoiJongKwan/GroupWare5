@@ -28,7 +28,7 @@ import lombok.Setter;
 @NamedQuery(name="Employee.findEmail", query="select e.email from Employee e where e.employeeNo=:employeeNo and e.password=:password")//아이디찾기
 @NamedQuery(name="Employee.findPw", query="select e.password from Employee e where e.employeeName=:employeeName and e.email=:email")//비밀번호찾기
 @NamedQuery(name="Employee.findLoginByEmp", query="select e from Employee e where e.email=:email and e.password=:password")//로그인
-
+@NamedQuery(name = "Employee.getEmployeeRole",query = "select e.role from Employee e where e.employeeNo=:employeeNo")//사원번호로  role불러오기
 
 @Entity
 public class Employee {
