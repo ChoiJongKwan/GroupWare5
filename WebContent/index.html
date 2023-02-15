@@ -48,11 +48,11 @@ body, html {height: 100%}
 
         <div class="login_append">
         <span class="txt_find">
-           <a href="/user/searchId.do" class="link_find"><p style="color:#000000;">아이디 찾기</a>
+           <a href="employee/searchEmail.jsp" class="link_find"><p style="color:#000000;">이메일 찾기</a>
             |
-           <a href="/user/searchPw.do" class="link_find">비밀번호 찾기</a>
+           <a href="employee/searchPw.jsp" class="link_find">비밀번호 찾기</a>
             |
-           <a href="/user/join.do" class="link_find">회원가입</p></a>
+           <a href="employee/write.jsp" class="link_find">회원가입</p></a>
          </span>
        </div>
 
@@ -67,44 +67,5 @@ body, html {height: 100%}
 
 </body>
 
-<script>
 
-
-
-$(function() {
-   $("#btnLogin").on("click", function() {
-      $.ajax({
-         url: "/company/login",
-         type: "post",
-         data: $("#loginForm").serialize(),
-         success: function(obj) {
-            console.log(obj);
-            if(obj =="fail") {
-               alert("존재하지 않는 아이디입니다.");
-               $("#email").focus();
-               return;
-            }
-
-            if(obj == "pwFail") {
-               alert("비밀번호가 틀렸습니다. 비밀번호를 확인해주세요");
-               $("#password").focus();
-               return;
-            }
-            
-            location.href="/main.jsp";
-         },
-         error: function(e) {
-            console.log(e);
-         }
-      });
-   });
-});
-
-
-
-
-
-
-
-</script>
 </html>

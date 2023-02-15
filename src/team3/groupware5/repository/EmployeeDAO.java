@@ -1,6 +1,7 @@
 package team3.groupware5.repository;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -13,53 +14,100 @@ import team3.groupware5.vo.Employee;
 @Repository
 public class EmployeeDAO {
 
-	public boolean FindLogin(String email, String password) throws SQLException {
+	// 로그인
+	public int findLogin(String email, String password) throws SQLException {
 
+		EntityManager em = DBUtil.getEntityManager();
+
+		try {
+
+			Employee data = (Employee) em.createNamedQuery("Employee.findLoginByEmp").setParameter("email", email)
+					.setParameter("password", password).getSingleResult();
+			System.out.println(data);
+			return data.getEmployeeNo();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			em.close();
+
+		}
+		return 0;
+	}
+
+	// 회원가입
+	public boolean JoinEmployee(Employee employee) {
 		EntityManager em = DBUtil.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 
 		try {
-
 			tx.begin();
-
-		Employee data = (Employee) em.createNamedQuery("Employee.findLoginByEmp").setParameter("email", email).setParameter("password", password).getSingleResult();
-			em.persist(data);
-			System.out.println(data);
-
+			System.out.println(employee);
+			em.persist(employee);
 			tx.commit();
 			return true;
 
 		} catch (Exception e) {
 			tx.rollback();
 			e.printStackTrace();
-
 		} finally {
 			em.close();
-
 		}
+		
 		return false;
 	}
-	//세션 저장 값 no로 변환
-	public int getEmployeeEmail(String email) throws SQLException {
+
+	//아이디찾기
+	public String findEmail(int employeeNo, String password) throws SQLException {
+
 		EntityManager em = DBUtil.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
-		System.out.println(email);
-		
-		int id = 0;
+		String data = null;
 		try {
+
 			tx.begin();
-			id = (Integer)em.createNamedQuery("Employee.getEmployee").setParameter("email", email).getSingleResult();
-	
+
+			data = (String) em.createNamedQuery("Employee.findEmail").setParameter("employeeNo", employeeNo)
+					.setParameter("password", password).getSingleResult();
+
 			tx.commit();
-			
+
 		} catch (Exception e) {
 			tx.rollback();
 			e.printStackTrace();
+
 		} finally {
 			em.close();
+
 		}
-		return id;
+		return data;
+	}
+	//비밀번호찾기
+	public String findPw(String email, String employeeName) throws SQLException {
+
+		EntityManager em = DBUtil.getEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		String data = null;
+		try {
+
+			tx.begin();
+
+			data = (String) em.createNamedQuery("Employee.findPw").setParameter("email", email)
+					.setParameter("employeeName", employeeName).getSingleResult();
+
+			tx.commit();
+
+		} catch (Exception e) {
+			tx.rollback();
+			e.printStackTrace();
+
+		} finally {
+			em.close();
+
+		}
+		return data;
 	}
 
-	
+
 }
