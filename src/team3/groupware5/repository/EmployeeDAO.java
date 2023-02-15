@@ -130,4 +130,25 @@ public class EmployeeDAO {
 	   }
 
 
+//이름 찾기
+		public String findName(int employeeNo) throws SQLException {
+
+		      EntityManager em = DBUtil.getEntityManager();
+		      String name = null;
+
+		      try {
+
+		    	  name = (String) em.createNamedQuery("Employee.getEmployeeName").setParameter("employeeNo", employeeNo).getSingleResult();
+
+		      } catch (Exception e) {
+		         e.printStackTrace();
+
+		      } finally {
+		         em.close();
+
+		      }
+		      return name;
+		   }
+
+
 }

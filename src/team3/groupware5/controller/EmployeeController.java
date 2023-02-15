@@ -22,7 +22,7 @@ import team3.groupware5.vo.Employee;
 
 @Controller
 @RequestMapping("company")
-@SessionAttributes({ "emp", "email","employeeNo" })
+@SessionAttributes({ "emp","employeeNo", "employeeName"})
 public class EmployeeController extends HttpServlet {
 
 	@Autowired
@@ -31,7 +31,10 @@ public class EmployeeController extends HttpServlet {
 	// 로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(Model sessionData, @RequestParam("email") String email,
-			@RequestParam("password") String password) throws Exception {
+			@RequestParam("password") String password
+			
+			
+			) throws Exception {
 
 		int employeeNo = 0;
 		String url = "redirect:../index.html";
@@ -39,7 +42,8 @@ public class EmployeeController extends HttpServlet {
 			employeeNo = employeeService.getLogin(email, password);
 			if (employeeNo != 0) {
 				sessionData.addAttribute("employeeNo", employeeNo);
-				sessionData.addAttribute("email", email);
+				sessionData.addAttribute("employeeName", employeeService.findName(employeeNo));
+				
 				System.out.println(sessionData);
 				url = "redirect:/main.jsp";
 			} else {
@@ -53,6 +57,7 @@ public class EmployeeController extends HttpServlet {
 		return url;
 
 	}
+
 
 	// 사원등록
 	@RequestMapping(value = "/join", method = RequestMethod.POST)

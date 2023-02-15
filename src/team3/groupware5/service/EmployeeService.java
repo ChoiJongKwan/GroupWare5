@@ -51,6 +51,9 @@ public class EmployeeService {
 	public String fineRole(int employeeNo) throws Exception {
 	      return employeeDao.findrole(employeeNo);
 	   }
-
+	
+		//이름 찾기
+		public String findName(int employeeNo) throws Exception {
+		      return employeeDao.findName(employeeNo);
 	
 }
