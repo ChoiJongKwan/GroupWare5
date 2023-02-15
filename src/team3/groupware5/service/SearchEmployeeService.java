@@ -26,9 +26,15 @@ public class SearchEmployeeService {
 	
 	
 	//삭제
-	public boolean deleteEmp(String email) {
+	public int deleteEmp(int employeeNo) {
 		
-		return dao.deleteEmp(email);
+		return dao.deleteEmp(employeeNo);
+	}
+	
+	
+	//update
+	public boolean updateEmp(int employeeNo, String teamName, String password, String positionName) throws SQLException {
+		return dao.updateEmp(employeeNo, teamName, password, positionName);
 	}
 
 }

@@ -9,39 +9,52 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>회원정보 보기</title>
+<title>직원정보 보기</title>
+
+	<style type="text/css">
+	.tg  {border-collapse:collapse;border-spacing:0; width: 60%;}
+	.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+	  overflow:hidden;padding:10px 5px;word-break:normal;}
+	.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+	  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+	.tg .tg-baqh{text-align:center;vertical-align:top}
+	.tg .tg-l4e4{background-color:#000000;border-color:inherit;color:#ffffff; font-weight:bold;text-align:center;vertical-align:top}
+	</style>
+
 </head>
 
 <body>
 
-	<h3>개인 회원 정보 보기</h3>
+	<h3>직원 정보 보기</h3>
 	<br>
-	<!-- view Form
-		http://localhost/step05_customer/CustomerServlet/insert
-			- 가입 정보 입력 후 가입 후 실행된 url
-				- view.jsp
-		http://localhost/step05_customer/CustomerServlet/allView
-	  -->
-	<form action="allView">
-		
-		<table border="1" cellspacing="1" width="60%">
-			<tr>
-				<td width=30%>사용자 아이디</td>
-				<td width=70%>${cvo.id}</td>
-			</tr>
-			<tr>
-				<td width="30%">비밀번호</td>
-				<td width="70%">${cvo.password}</td>
-			</tr>
-			<tr>
-				<td width="30%">이름</td>
-				<td width="70%">${cvo.name}</td>
-			</tr>
-			<tr>
-				<td width="30%">이메일 주소</td>
-				<td width="70%">${cvo.email}</td>
-			</tr>
-		</table>
+	<form action="/allView">
+	
+		<table class="tg">
+	<thead>
+	  <tr>
+	    <th class="tg-calz" width=30%>사번</th>
+	    <th class="tg-baqh" width=50%>${evo.employeeNo}</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <tr>
+	    <td class="tg-calz" width=30%>부서</td>
+	    <td class="tg-baqh" width=50%>${evo.teamName}</td>
+	  </tr>
+	  <tr>
+	    <td class="tg-calz" width=30%>이름</td>
+	    <td class="tg-baqh" width=50%>${evo.employeeName}</td>
+	  </tr>
+	  <tr>
+	    <td class="tg-calz" width=30%>메일</td>
+	    <td class="tg-baqh" width=50%>${evo.email}</td>
+	  </tr>
+	  <tr>
+	    <td class="tg-calz" width=30%>직급</td>
+	    <td class="tg-baqh" width=50%>${evo.positionName}</td>
+	  </tr>
+	</tbody>
+	</table>
 		<br>
 		<br> 
 		

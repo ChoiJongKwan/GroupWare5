@@ -42,34 +42,34 @@
 	<thead>
 	  <tr>
 	    <th class="tg-calz" width=30%>사번</th>
-	    <th class="tg-baqh" width=50%>${sessionScope.evo.employeeNo}</th>
+	    <th class="tg-baqh" width=50%>-${requestScope.evo.employeeNo}-</th>
 	  </tr>
 	</thead>
 	<tbody>
 	  <tr>
 	    <td class="tg-calz" width=30%>메일</td>
-	    <td class="tg-baqh" width=50%>${sessionScope.evo.email}</td>
+	    <td class="tg-baqh" width=50%>${requestScope.evo.email}</td>
 	  </tr>
 	  <tr>
 	    <td class="tg-calz" width=30%>이름</td>
-	    <td class="tg-baqh" width=50%>${sessionScope.evo.employeeName}</td>
+	    <td class="tg-baqh" width=50%>${requestScope.evo.employeeName}</td>
 	  </tr>
 	  <tr>
 	    <td class="tg-calz" width=30%>부서</td>
 	    <td class="tg-baqh" width=50%>
-	    	<input type="type" name="teamName" value="${sessionScope.evo.teamName}">
+	    	<input type="type" name="teamName" value="${requestScope.evo.teamName}">
 	    </td>
 	  </tr>
 	  <tr>
 	    <td class="tg-calz" width=30%>비번</td>
 	    <td class="tg-baqh" width=50%>
-	    	<input type="password" name="password" value="${sessionScope.evo.password}">
+	    	<input type="password" name="password" value="${requestScope.evo.password}">
 	    </td>
 	  </tr>
 	  <tr>
 	    <td class="tg-calz" width=30%>직급</td>
 	    <td class="tg-baqh" width=50%>
-	    	<input type="type" name="positionName" value="${sessionScope.evo.positionName}">
+	    	<input type="type" name="positionName" value="${requestScope.evo.positionName}">
 	    </td>
 	  </tr>
 	</tbody>
@@ -78,7 +78,7 @@
 
 	<input type="submit" value="수정" > &nbsp;
 	<input type="reset" value="취소">&nbsp;
-	<input type="button" value="모두보기" Onclick="location.href='../search/SearchServlet/allView'">
+	<input type="button" value="모두보기" Onclick="location.href='${pageContext.request.contextPath}/search/SearchServlet/allView'">
 </form>
 
 </body>

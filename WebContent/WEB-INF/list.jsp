@@ -28,7 +28,7 @@
     <div id="board-search">
         <div class="container">
             <div class="search-window">
-                <form action="/search/SearchServlet/allView">
+                <form action="../SearchServlet/view">
                     <div class="search-wrap">
                         <label for="search" class="blind">직원 검색</label>
                         <input id="search" type="search" name="" placeholder="직원 사번 입력" value="${evo.employeeNo}">
@@ -64,10 +64,10 @@
 				<td class="tg-baqh">${evo.email}</td>
 				<td class="tg-baqh">${evo.positionName}</td>
 				<td class="tg-baqh">
-				  <button onclick='location.href="${pageContext.request.contextPath}/search/SearchServlet/delete?email=${evo.email}"'>탈퇴</button>
+				  <button onclick='location.href="${pageContext.request.contextPath}/search/SearchServlet/delete?employeeNo=${evo.employeeNo}"'>탈퇴</button>
 				</td>
 				<td class="tg-baqh">
-				  <button onclick='location.href="${pageContext.request.contextPath}/search/update.jsp"'>수정</button>
+				  <button onclick='location.href="${pageContext.request.contextPath}/search/SearchServlet/updateview?employeeNo=${evo.employeeNo}"'>수정</button>
 				</td>
 			</tr>
 		</c:forEach>
@@ -90,7 +90,6 @@
 
 <p>
 <a href="${pageContext.request.contextPath}/main.jsp">메인</a>  
-<%-- <a href="${pageContext.request.contextPath}/SearchServlet/logout">로그아웃</a> --%>
 
 </center>
 </body>

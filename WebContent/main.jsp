@@ -22,6 +22,7 @@
   <a href="">MyPage</a>
   </span>
  </div>
+</div>
 		<!-- Header -->
 			<div id="header2">
 
@@ -38,11 +39,9 @@
 						<nav id="nav">
 							<ul>
 								<li><a href="NoticeServlet/noticeallview"><span class="icon solid fa-home">공지사항</span></a></li>
-								<li><a href="todolist/allview" id="portfolio-link"><span class="icon solid fa-th">todolist</span></a></li>
+								<li><a href="search/SearchServlet/allView" id="portfolio-link"><span class="icon solid fa-th">사원조회</span></a></li>
 								<li><a href="#about" id="about-link"><span class="icon solid fa-user">About Me</span></a></li>
 								<li><a href="#contact" id="contact-link"><span class="icon solid fa-envelope">Contact</span></a></li>
-								<li><a href="message/list" id="portfolio-link"><span class="icon solid fa-envelope">메시지</span></a></li>
-								
 							</ul>
 						</nav>
 
