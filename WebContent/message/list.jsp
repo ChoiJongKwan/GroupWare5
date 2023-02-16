@@ -29,8 +29,8 @@
 			<!-- Logo -->
 			<div id="logo">
 				<span class="image avatar48"><img src="../images/avatar.jpg" alt="" /></span>
-				<h1 id="title">${sessionScope.name}</h1>
-				<p>${sessionScope.teamName}</p>
+				<h1 id="title">${sessionScope.employeename}</h1>
+				<p>${sessionScope.email}</p>
 			</div>
 
 			<!-- Nav -->
