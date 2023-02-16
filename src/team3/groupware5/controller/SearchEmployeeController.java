@@ -6,17 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import team3.groupware5.repository.EmployeeDAO;
 import team3.groupware5.repository.SearchEmployeeDAO;
+import team3.groupware5.service.EmployeeService;
 import team3.groupware5.vo.Employee;
 
 @Controller
@@ -27,22 +25,31 @@ public class SearchEmployeeController {
 	@Autowired
 	private SearchEmployeeDAO dao;
 	
+	@Autowired
+	private EmployeeService employeeservice;
+
 	
 	//전체 직원 검색
 	@RequestMapping(value = "/allView", method = RequestMethod.GET)
-	public ModelAndView getEmployee() throws SQLException {
-		
-		ModelAndView mv = new ModelAndView();
-			
-		mv.addObject("allData", dao.getEmployees());
-		mv.setViewName("/list");
-		
-		return mv;
-		
-	}
-	
-	
-	@RequestMapping(value = "/updateview", method=RequestMethod.GET)
+	   public ModelAndView getEmployee(Model model) throws Exception {
+	      
+	      ModelAndView mv = new ModelAndView();
+	      
+	      if(employeeservice.fineRole((int)model.getAttribute("employeeNo")).equals("admin")) {
+	         mv.addObject("allData", dao.getEmployees());
+	         mv.setViewName("/listAdmin");
+	      }else {
+	         mv.addObject("allData", dao.getEmployees());
+	         mv.setViewName("/listEmp");
+	      }
+	      
+	      return mv;
+	      
+	   }
+
+
+	//updateview
+	@RequestMapping(value = "/updateView", method=RequestMethod.GET)
 	public ModelAndView updateView(@RequestParam("employeeNo") int employeeNo) throws SQLException{
 			
 		ModelAndView mv = new ModelAndView();		
@@ -60,17 +67,11 @@ public class SearchEmployeeController {
 					     @RequestParam("positionName") String positionName,
 					     @RequestParam("employeeNo") int employeeNo,
 					     @ModelAttribute("evo") Employee evo) throws SQLException{
-		System.out.println("update() ---- " + evo);
-		
-		evo.setTeamName(teamName);
-		evo.setPassword(password);
-		evo.setPositionName(positionName);
 			
 		dao.updateEmp(employeeNo, teamName, password, positionName);
 				
-		return "updateSuccess.jsp";
+		return "../search/updateSuccess";
 	}
-	
 	
 	
 	//delete
@@ -81,16 +82,15 @@ public class SearchEmployeeController {
 	}
 	
 	
-	//searchEmp
-//	@RequestMapping(value = "/view", method = RequestMethod.GET)
-//	public int view(Model model) throws SQLException {
-//		int employeeNo =(int) model.getAttribute("employeeNo");
-//		Employee e = new Employee(a);
-//
-//		int result	= dao.getEmployeeEmail(employeeNo);
-//		System.out.println("controller: "+ result);
-//		return result;
-//	}
+	//searchEmp - 사번으로 직원 찾기
+	@RequestMapping(value = "/searchno", method = RequestMethod.POST)
+	public ModelAndView searchNo(@RequestParam("employeeNo") int employeeNo, Model model) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("allData", dao.getEmpOneNo(employeeNo));
+		mv.setViewName("/listAdmin");
+		
+		return null;
+	}
 	
 	
 	//예외처리

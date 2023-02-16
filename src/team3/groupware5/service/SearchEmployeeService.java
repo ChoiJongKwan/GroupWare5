@@ -26,8 +26,7 @@ public class SearchEmployeeService {
 	
 	
 	//삭제
-	public int deleteEmp(int employeeNo) {
-		
+	public boolean deleteEmp(int employeeNo) {
 		return dao.deleteEmp(employeeNo);
 	}
 	

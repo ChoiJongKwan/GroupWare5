@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
@@ -57,7 +56,6 @@ public class SearchEmployeeDAO {
 	}
 	
 	
-	
 	//직원 정보 업데이트 - 사원번호로 찾아서 부서, 비번, 직급 수정
 	public boolean updateEmp(int employeeNo, String teamName, String password, String positionName) throws SQLException {
 		
@@ -68,18 +66,13 @@ public class SearchEmployeeDAO {
 		
 		try {
 			tx.begin();
-			employee = (Employee) em.createQuery("UPDATE EMPLOYEE SET teamName=?, password=?, positionName=? WHERE employeeNo=?").setParameter("employeeNo", employeeNo);
 			
-			if (employee != null) {
-				// before update
-				System.out.println("update 전 : " + employee);
-				employee.setTeamName(teamName);
-			}else {
-				System.out.println("업데이트 하려는 사람의 정보를 찾지 못하였습니다");
-			}
+			employee = em.find(Employee.class, employeeNo);
+			employee.setTeamName(teamName);
+			employee.setPassword(password);
+			employee.setPositionName(positionName);
+			
 			tx.commit();
-			// after update
-			System.out.println("update 후 : " + employee);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -93,7 +86,7 @@ public class SearchEmployeeDAO {
 	
 	
 	//직원 삭제
-	public int deleteEmp(int employeeNo) {
+	public boolean deleteEmp(int employeeNo) {
 		
 		EntityManager em = DBUtil.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
@@ -101,16 +94,10 @@ public class SearchEmployeeDAO {
 		try {
 			
 			tx.begin();
-			Employee empDel = em.createQuery("DELETE FROM Employee WHERE employeeNo=?", Employee.class).getSingleResult();
-			
-			if (empDel != null) {
-				em.remove(empDel);
-				System.out.println("----------");
-			}else {
-				System.out.println("삭제하려는 사원이 없습니다.");
-			}
-			
+			Employee emp = em.find(Employee.class, employeeNo);
+			em.remove(emp);
 			tx.commit();
+			return true;
 			
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -118,7 +105,6 @@ public class SearchEmployeeDAO {
 		finally {
 			em.close();
 		}
-		return 0;
-		
+		return false;
 	}
 }

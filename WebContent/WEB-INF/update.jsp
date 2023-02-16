@@ -36,7 +36,7 @@
 	http://localhost/step05_customer/CustomerServlet/update
 	http://localhost/step05_customer/CustomerServlet/allView
  -->
-<form action="/search/SearchServlet/update" method="post">
+<form action="../SearchServlet/update?employeeNo=${requestScope.evo.employeeNo}" method="post">
 
 	<table class="tg">
 	<thead>

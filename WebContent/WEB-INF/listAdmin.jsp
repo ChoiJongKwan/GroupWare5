@@ -25,16 +25,28 @@
 <h3>직원 정보 조회</h3>
 
     <!-- board seach area -->
-    <div id="board-search">
+<%--     <div id="board-search">
         <div class="container">
             <div class="search-window">
-                <form action="../SearchServlet/view">
-                    <div class="search-wrap">
-                        <label for="search" class="blind">직원 검색</label>
-                        <input id="search" type="search" name="" placeholder="직원 사번 입력" value="${evo.employeeNo}">
-                        <button type="submit" class="btn btn-dark">검색</button>
-                    </div>
-                </form>
+                <form name="form1" method="post" action="searchno">
+ 
+	    <select name="search_option">
+	        <option value="empNo"
+				<c:if test="${evo.employeeNo}">selected</c:if>
+			>사번</option>
+	 
+	        <option value="empName" 
+				<c:if test="${map.search_option == 'title'}">selected</c:if>
+	        >이름</option>
+	 
+	        <option value="empEmail" 
+				<c:if test="${map.search_option == 'content'}">selected</c:if>
+	        >메일</option>
+    </select>
+    <input name="keyword" value="${map.keyword}">
+    <input type="submit" value="조회">
+</form> --%>
+
             </div>
         </div>
     </div>
@@ -67,7 +79,7 @@
 				  <button onclick='location.href="${pageContext.request.contextPath}/search/SearchServlet/delete?employeeNo=${evo.employeeNo}"'>탈퇴</button>
 				</td>
 				<td class="tg-baqh">
-				  <button onclick='location.href="${pageContext.request.contextPath}/search/SearchServlet/updateview?employeeNo=${evo.employeeNo}"'>수정</button>
+				  <button onclick='location.href="${pageContext.request.contextPath}/search/SearchServlet/updateView?employeeNo=${evo.employeeNo}"'>수정</button>
 				</td>
 			</tr>
 		</c:forEach>
@@ -84,12 +96,8 @@
 	</div> -->
 
 
-<c:if test="${empty requestScope.allData}">
-	현 시점엔 고객이 한 명도 없습니다.<br>
-</c:if>
-
 <p>
-<a href="${pageContext.request.contextPath}/main.jsp">메인</a>  
+<a href="../../NoticeServlet/noticeallview">메인</a>
 
 </center>
 </body>
